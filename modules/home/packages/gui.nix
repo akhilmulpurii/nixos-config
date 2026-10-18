@@ -2,8 +2,6 @@
 {
   home.packages = with pkgs; [
     ## Multimedia
-    amberol # music player
-    audacity
     gimp
     media-downloader
 
@@ -23,9 +21,5 @@
     popsicle
     mission-center # GUI resources monitor
     zenity
-
-    ## Level editor
-    ldtk
-    tiled
   ];
 }

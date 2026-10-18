@@ -138,9 +138,8 @@ You can find my previous Catppuccin rice [here](https://github.com/Frost-Phoenix
 | **Lockscreen**              | [Hyprlock][Hyprlock] + [Swaylock-effects][Swaylock-effects] |
 | **Image Viewer**            | [imv][imv] |
 | **Media Player**            | [mpv][mpv] |
-| **Music Player**            | [audacious][audacious] |
 | **Screenshot Software**     | [grimblast][grimblast] |
-| **Screen Recording**        | [wf-recorder][wf-recorder] + [OBS][OBS] |
+| **Screen Recording**        | [wf-recorder][wf-recorder] |
 | **Clipboard**               | [wl-clip-persist][wl-clip-persist] |
 | **Color Picker**            | [hyprpicker][hyprpicker] |
 
@@ -325,7 +324,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](./LICENSE
 [zsh]: https://ohmyz.sh/
 [Swaylock-effects]: https://github.com/mortie/swaylock-effects
 [Hyprlock]: https://github.com/hyprwm/hyprlock
-[audacious]: https://audacious-media-player.org/
 [mpv]: https://github.com/mpv-player/mpv
 [Zed]: https://zed.dev/
 [Neovim]: https://github.com/neovim/neovim
@@ -342,5 +340,4 @@ This project is licensed under the **MIT License** - see the [LICENSE](./LICENSE
 [Papirus-Dark]: https://github.com/PapirusDevelopmentTeam/papirus-icon-theme
 [Bibata-Modern-Ice]: https://www.gnome-look.org/p/1197198
 [Colloid gtk theme]: https://github.com/vinceliuice/Colloid-gtk-theme
-[OBS]: https://obsproject.com/
 [superfile]: https://github.com/yorukot/superfile

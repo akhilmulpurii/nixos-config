@@ -9,7 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-gaming.url = "github:fufexan/nix-gaming";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
 
     nix-index-database = {
@@ -22,10 +21,6 @@
       flake = false;
     };
 
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     superfile.url = "github:yorukot/superfile";
     zen-browser.url = "github:0xc000022070/zen-browser-flake/beta";
   };
