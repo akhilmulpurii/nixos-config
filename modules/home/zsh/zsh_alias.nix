@@ -8,7 +8,7 @@
       tt = "gtrash put";
       cat = "bat";
       nano = "micro";
-      code = "codium";
+      code = "zeditor";
       diff = "delta --diff-so-fancy --side-by-side";
       less = "bat";
       copy = "wl-copy";
@@ -26,7 +26,7 @@
       tree = "eza --icons --tree --group-directories-first";
 
       # Nixos
-      cdnix = "cd ~/nixos-config && codium ~/nixos-config";
+      cdnix = "cd ~/nixos-config && zeditor ~/nixos-config";
       ns = "nom-shell --run zsh";
       nsp = "nom-shell --run zsh -p";
       nd = "nom develop --command zsh";

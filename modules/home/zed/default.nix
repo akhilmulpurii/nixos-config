@@ -1,7 +1,7 @@
 { ... }:
 {
   imports = [
-    ./vscodium.nix
+    ./zed.nix
     ./settings.nix
     ./extensions.nix
     ./keybinds.nix

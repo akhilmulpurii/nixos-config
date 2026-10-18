@@ -6,7 +6,7 @@
     audacity
     gimp
     media-downloader
-    obs-studio
+
     pavucontrol
     video-trimmer
     vlc

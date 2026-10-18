@@ -126,7 +126,7 @@ You can find my previous Catppuccin rice [here](https://github.com/Frost-Phoenix
 | **Notification Daemon**     | [swaync][swaync] |
 | **Terminal Emulator**       | [Ghostty][Ghostty] |
 | **Shell**                   | [zsh][zsh] + [powerlevel10k][powerlevel10k] |
-| **Text Editor**             | [VSCodium][VSCodium] + [Neovim][Neovim] |
+| **Text Editor**             | [Zed][Zed] + [Neovim][Neovim] |
 | **network management tool** | [NetworkManager][NetworkManager] + [network-manager-applet][network-manager-applet] |
 | **System resource monitor** | [Btop][Btop] |
 | **File Manager**            | [superfile][superfile] + [nemo][nemo] |
@@ -327,7 +327,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](./LICENSE
 [Hyprlock]: https://github.com/hyprwm/hyprlock
 [audacious]: https://audacious-media-player.org/
 [mpv]: https://github.com/mpv-player/mpv
-[VSCodium]:https://vscodium.com/
+[Zed]: https://zed.dev/
 [Neovim]: https://github.com/neovim/neovim
 [grimblast]: https://github.com/hyprwm/contrib
 [imv]: https://sr.ht/~exec64/imv/
