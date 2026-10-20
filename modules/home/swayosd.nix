@@ -13,10 +13,18 @@
       bindl = [
         "$mod, XF86MonBrightnessUp, exec, swayosd-client --brightness 100"
         "$mod, XF86MonBrightnessDown, exec, swayosd-client --brightness 0"
+        "SHIFT, XF86MonBrightnessUp, exec, swayosd-client --brightness 100"
+        "SHIFT, XF86MonBrightnessDown, exec, swayosd-client --brightness 0"
       ];
       bindel = [
         ", XF86MonBrightnessUp, exec, swayosd-client --brightness raise"
         ", XF86MonBrightnessDown, exec, swayosd-client --brightness lower"
+        "ALT, XF86MonBrightnessUp, exec, swayosd-client --brightness +1"
+        "ALT, XF86MonBrightnessDown, exec, swayosd-client --brightness -1"
+        "ALT, XF86AudioRaiseVolume, exec, swayosd-client --output-volume +1"
+        "ALT, XF86AudioLowerVolume, exec, swayosd-client --output-volume -1"
+        ", XF86KbdBrightnessUp, exec, brightnessctl -d '*::kbd_backlight' set +10%"
+        ", XF86KbdBrightnessDown, exec, brightnessctl -d '*::kbd_backlight' set 10%-"
       ];
       binde = [
         ", XF86AudioRaiseVolume, exec, swayosd-client --output-volume +2"

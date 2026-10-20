@@ -1,5 +1,11 @@
 { ... }:
+let
+  # Omarchy-style web apps, opened in a new zen window
+  webapp = url: "zen-beta --new-window ${url}";
+in
 {
+  # Keybinds follow Omarchy defaults (https://omarchy.org/manual/hotkeys/).
+  # Older personal binds are kept only where they don't clash with Omarchy.
   wayland.windowManager.hyprland.settings = {
     binds = {
       scroll_event_delay = 100;
@@ -10,64 +16,24 @@
       # show keybinds list
       "$mod, F1, exec, show-keybinds"
 
-      # keybindings
-      "$mod, Return, exec, ghostty --gtk-single-instance=true"
-      "ALT, Return, exec, [float; size 1111 700] ghostty"
-      "$mod SHIFT, Return, exec, [fullscreen] ghostty"
-      "$mod, B, exec, [workspace 1 silent] zen-beta"
+      ########## Omarchy: navigating ##########
+      "$mod, Space, exec, toggle-rofi rofi -show drun"
+      "$mod ALT, Space, exec, toggle-rofi rofi -show drun"
+      "$mod, Escape, exec, power-menu"
+      "$mod CTRL, L, exec, hyprlock"
+      "$mod, W, killactive,"
       "$mod, Q, killactive,"
+      "CTRL ALT, Delete, exec, close-all-windows"
+
+      "$mod, T, exec, toggle-float"
+      "$mod, J, layoutmsg, togglesplit"
+      "$mod, O, pin,"
+      "$mod, L, exec, cycle-layout"
+      "$mod ALT, L, exec, cycle-layout --reverse"
+      "$mod, P, pseudo,"
       "$mod, F, fullscreen, 0"
-      "$mod SHIFT, F, fullscreen, 1"
-      "$mod, Space, exec, toggle-float"
-      "$mod, D, exec, toggle-rofi rofi -show drun"
-      "$mod SHIFT, D, exec, vesktop --enable-features=UseOzonePlatform --ozone-platform=wayland"
-      "$mod, Escape, exec, hyprlock"
-      "ALT, Escape, exec, hyprlock & systemctl suspend"
-      "$mod SHIFT, Escape, exec, power-menu"
-      "$mod, P, exec, power-profile-menu"
-      "$mod, T, exec, toggle-oppacity"
-      "$mod, E, exec, nemo"
-      "ALT, E, exec, hyprctl dispatch exec '[float; size 1111 700] nemo'"
-      "$mod SHIFT, B, exec, toggle-waybar"
-      "$mod, C ,exec, hyprpicker -a"
-      "$mod, W,exec, wallpaper-picker"
-      "$mod SHIFT, W,exec, hyprctl dispatch exec '[float; size 925 615] waypaper'"
-      "$mod, N, exec, swaync-client -t -sw"
-      "CTRL SHIFT, Escape, exec, hyprctl dispatch exec '[workspace 9] missioncenter'"
-      "$mod, equal, exec, woomer"
-      # "$mod SHIFT, W, exec, vm-start"
-
-      "$mod, XF86Display, exec, toggle-display"
-
-      # screenshot
-      ", Print, exec, screenshot --copy"
-      "$mod, Print, exec, screenshot --save"
-      "$mod SHIFT, Print, exec, screenshot --swappy"
-
-      # OCR
-      "$mod CTRL, O, exec, ocr"
-
-      # switch focus
-      "$mod, left,  movefocus, l"
-      "$mod, right, movefocus, r"
-      "$mod, up,    movefocus, u"
-      "$mod, down,  movefocus, d"
-      "$mod, h, movefocus, l"
-      "$mod, j, movefocus, d"
-      "$mod, k, movefocus, u"
-      "$mod, l, movefocus, r"
-
-      "$mod, left,  alterzorder, top"
-      "$mod, right, alterzorder, top"
-      "$mod, up,    alterzorder, top"
-      "$mod, down,  alterzorder, top"
-      "$mod, h, alterzorder, top"
-      "$mod, j, alterzorder, top"
-      "$mod, k, alterzorder, top"
-      "$mod, l, alterzorder, top"
-
-      "CTRL ALT, up, exec, hyprctl dispatch focuswindow floating"
-      "CTRL ALT, down, exec, hyprctl dispatch focuswindow tiled"
+      "$mod ALT, F, fullscreen, 1"
+      "$mod CTRL, F, fullscreenstate, 0 2"
 
       # switch workspace
       "$mod, 1, workspace, 1"
@@ -80,59 +46,197 @@
       "$mod, 8, workspace, 8"
       "$mod, 9, workspace, 9"
       "$mod, 0, workspace, 10"
+      "$mod, Tab, workspace, e+1"
+      "$mod SHIFT, Tab, workspace, e-1"
+      "$mod CTRL, Tab, workspace, previous"
 
-      # same as above, but switch to the workspace
-      "$mod SHIFT, 1, movetoworkspacesilent, 1" # movetoworkspacesilent
-      "$mod SHIFT, 2, movetoworkspacesilent, 2"
-      "$mod SHIFT, 3, movetoworkspacesilent, 3"
-      "$mod SHIFT, 4, movetoworkspacesilent, 4"
-      "$mod SHIFT, 5, movetoworkspacesilent, 5"
-      "$mod SHIFT, 6, movetoworkspacesilent, 6"
-      "$mod SHIFT, 7, movetoworkspacesilent, 7"
-      "$mod SHIFT, 8, movetoworkspacesilent, 8"
-      "$mod SHIFT, 9, movetoworkspacesilent, 9"
-      "$mod SHIFT, 0, movetoworkspacesilent, 10"
-      "$mod CTRL, c, movetoworkspace, empty"
+      # move window to workspace (and follow)
+      "$mod SHIFT, 1, movetoworkspace, 1"
+      "$mod SHIFT, 2, movetoworkspace, 2"
+      "$mod SHIFT, 3, movetoworkspace, 3"
+      "$mod SHIFT, 4, movetoworkspace, 4"
+      "$mod SHIFT, 5, movetoworkspace, 5"
+      "$mod SHIFT, 6, movetoworkspace, 6"
+      "$mod SHIFT, 7, movetoworkspace, 7"
+      "$mod SHIFT, 8, movetoworkspace, 8"
+      "$mod SHIFT, 9, movetoworkspace, 9"
+      "$mod SHIFT, 0, movetoworkspace, 10"
 
-      # window control
-      "$mod SHIFT, left, movewindow, l"
-      "$mod SHIFT, right, movewindow, r"
-      "$mod SHIFT, up, movewindow, u"
-      "$mod SHIFT, down, movewindow, d"
+      # move window to workspace without following
+      "$mod SHIFT ALT, 1, movetoworkspacesilent, 1"
+      "$mod SHIFT ALT, 2, movetoworkspacesilent, 2"
+      "$mod SHIFT ALT, 3, movetoworkspacesilent, 3"
+      "$mod SHIFT ALT, 4, movetoworkspacesilent, 4"
+      "$mod SHIFT ALT, 5, movetoworkspacesilent, 5"
+      "$mod SHIFT ALT, 6, movetoworkspacesilent, 6"
+      "$mod SHIFT ALT, 7, movetoworkspacesilent, 7"
+      "$mod SHIFT ALT, 8, movetoworkspacesilent, 8"
+      "$mod SHIFT ALT, 9, movetoworkspacesilent, 9"
+      "$mod SHIFT ALT, 0, movetoworkspacesilent, 10"
+
+      # scratchpad
+      "$mod, S, togglespecialworkspace, scratchpad"
+      "$mod, grave, togglespecialworkspace, scratchpad"
+      "$mod ALT, S, movetoworkspacesilent, special:scratchpad"
+      "$mod SHIFT, grave, movetoworkspacesilent, special:scratchpad"
+
+      # monitors
+      "$mod SHIFT CTRL, left, movewindow, mon:l"
+      "$mod SHIFT CTRL, right, movewindow, mon:r"
+      "$mod SHIFT CTRL, up, movewindow, mon:u"
+      "$mod SHIFT CTRL, down, movewindow, mon:d"
+      "$mod SHIFT ALT, left, movecurrentworkspacetomonitor, l"
+      "$mod SHIFT ALT, right, movecurrentworkspacetomonitor, r"
+      "$mod SHIFT ALT, up, movecurrentworkspacetomonitor, u"
+      "$mod SHIFT ALT, down, movecurrentworkspacetomonitor, d"
+
+      # focus
+      "$mod, left,  movefocus, l"
+      "$mod, right, movefocus, r"
+      "$mod, up,    movefocus, u"
+      "$mod, down,  movefocus, d"
+
+      # swap window
+      "$mod SHIFT, left,  swapwindow, l"
+      "$mod SHIFT, right, swapwindow, r"
+      "$mod SHIFT, up,    swapwindow, u"
+      "$mod SHIFT, down,  swapwindow, d"
+
+      # mouse wheel workspaces
+      "$mod, mouse_down, workspace, e-1"
+      "$mod, mouse_up, workspace, e+1"
+
+      # groups
+      "$mod, G, togglegroup,"
+      "$mod ALT, G, moveoutofgroup,"
+      "$mod ALT, Tab, changegroupactive, f"
+      "$mod ALT SHIFT, Tab, changegroupactive, b"
+      "$mod ALT, mouse_down, changegroupactive, f"
+      "$mod ALT, mouse_up, changegroupactive, b"
+      "$mod ALT, 1, changegroupactive, 1"
+      "$mod ALT, 2, changegroupactive, 2"
+      "$mod ALT, 3, changegroupactive, 3"
+      "$mod ALT, 4, changegroupactive, 4"
+      "$mod ALT, 5, changegroupactive, 5"
+      "$mod ALT, left,  moveintogroup, l"
+      "$mod ALT, right, moveintogroup, r"
+      "$mod ALT, up,    moveintogroup, u"
+      "$mod ALT, down,  moveintogroup, d"
+      "$mod CTRL, left,  changegroupactive, b"
+      "$mod CTRL, right, changegroupactive, f"
+
+      # zoom
+      "$mod CTRL, Z, exec, zoom --in"
+      "$mod CTRL ALT, Z, exec, zoom --reset"
+
+      # cycle windows / monitors
+      "ALT, Tab, cyclenext,"
+      "ALT, Tab, bringactivetotop,"
+      "ALT SHIFT, Tab, cyclenext, prev"
+      "ALT SHIFT, Tab, bringactivetotop,"
+      "CTRL ALT, Tab, focusmonitor, +1"
+      "CTRL ALT SHIFT, Tab, focusmonitor, -1"
+
+      ########## Omarchy: system controls ##########
+      "$mod CTRL, A, exec, pavucontrol"
+      "$mod CTRL, B, exec, blueman-manager"
+      "$mod CTRL, W, exec, ghostty -e nmtui"
+      "$mod CTRL, P, exec, power-profile-menu"
+      "$mod CTRL, T, exec, ghostty -e btop"
+
+      ########## Omarchy: launching apps ##########
+      "$mod, Return, exec, ghostty --gtk-single-instance=true"
+      "$mod SHIFT, Return, exec, zen-beta"
+      "$mod SHIFT ALT, B, exec, zen-beta --private-window"
+      "$mod SHIFT, F, exec, nemo"
+      "$mod SHIFT, N, exec, ghostty -e nvim"
+      "$mod SHIFT, A, exec, ${webapp "https://chatgpt.com"}"
+      "$mod SHIFT ALT, A, exec, ${webapp "https://grok.com"}"
+      "$mod SHIFT, P, exec, ${webapp "https://photos.google.com"}"
+      "$mod SHIFT ALT, S, exec, ${webapp "https://maps.google.com"}"
+      "$mod SHIFT ALT, G, exec, ${webapp "https://web.whatsapp.com"}"
+      "$mod SHIFT CTRL, G, exec, ${webapp "https://messages.google.com/web"}"
+      "$mod SHIFT, X, exec, ${webapp "https://x.com"}"
+      "$mod SHIFT ALT, X, exec, ${webapp "https://x.com/compose/post"}"
+      "$mod SHIFT, Y, exec, ${webapp "https://youtube.com"}"
+
+      ########## Omarchy: universal clipboard ##########
+      "$mod, C, sendshortcut, CTRL, Insert,"
+      "$mod, V, sendshortcut, SHIFT, Insert,"
+      "$mod, X, sendshortcut, CTRL, X,"
+      "$mod CTRL, V, exec, toggle-rofi \"cliphist list | rofi -dmenu -theme-str 'window {width: 50%;} listview {columns: 1;}' | cliphist decode | wl-copy\""
+
+      ########## Omarchy: capture ##########
+      ", Print, exec, screenshot --copy"
+      "$mod SHIFT, S, exec, screenshot --copy"
+      "$mod, Print, exec, hyprpicker -a"
+      "$mod CTRL, Print, exec, ocr"
+
+      ########## Omarchy: notifications ##########
+      "$mod, comma, exec, swaync-client --close-latest"
+      "$mod SHIFT, comma, exec, swaync-client --close-all"
+      "$mod CTRL, comma, exec, swaync-client --toggle-dnd"
+      "$mod SHIFT ALT, comma, exec, swaync-client -t -sw"
+
+      ########## Omarchy: style ##########
+      "$mod CTRL, Space, exec, wallpaper-picker"
+      "$mod, BackSpace, exec, toggle-oppacity"
+
+      ########## Omarchy: toggles ##########
+      "$mod SHIFT, Space, exec, toggle-waybar"
+      "$mod SHIFT, BackSpace, exec, toggle-gaps"
+      "$mod CTRL, Delete, exec, toggle-display"
+
+      ########## Omarchy: notices ##########
+      "$mod CTRL ALT, T, exec, notify-send \"$(date +'%A %H:%M')\" \"$(date +'%d %B %Y')\""
+      "$mod CTRL ALT, B, exec, notify-send \"Battery\" \"$(cat /sys/class/power_supply/BAT*/capacity)%\""
+
+      ########## Personal (non-conflicting) ##########
+      "ALT, Return, exec, [float; size 1111 700] ghostty"
+      "$mod, B, exec, [workspace 1 silent] zen-beta"
+      "$mod, D, exec, toggle-rofi rofi -show drun"
+      "$mod SHIFT, D, exec, vesktop --enable-features=UseOzonePlatform --ozone-platform=wayland"
+      "ALT, Escape, exec, hyprlock & systemctl suspend"
+      "$mod SHIFT, Escape, exec, power-menu"
+      "$mod, E, exec, nemo"
+      "ALT, E, exec, hyprctl dispatch exec '[float; size 1111 700] nemo'"
+      "$mod SHIFT, B, exec, toggle-waybar"
+      "$mod SHIFT, W,exec, hyprctl dispatch exec '[float; size 925 615] waypaper'"
+      "$mod, N, exec, swaync-client -t -sw"
+      "CTRL SHIFT, Escape, exec, hyprctl dispatch exec '[workspace 9] missioncenter'"
+      "$mod CTRL, O, exec, ocr"
+      "$mod CTRL, C, movetoworkspace, empty"
+      "$mod SHIFT, Print, exec, screenshot --swappy"
+      "CTRL, Print, exec, screenshot --save"
+      "$mod, XF86Display, exec, toggle-display"
+
+      # vim-style focus/move (J and L belong to Omarchy)
+      "$mod, h, movefocus, l"
+      "$mod, k, movefocus, u"
       "$mod SHIFT, h, movewindow, l"
       "$mod SHIFT, j, movewindow, d"
       "$mod SHIFT, k, movewindow, u"
       "$mod SHIFT, l, movewindow, r"
 
-      "$mod CTRL, left, resizeactive, -80 0"
-      "$mod CTRL, right, resizeactive, 80 0"
-      "$mod CTRL, up, resizeactive, 0 -80"
-      "$mod CTRL, down, resizeactive, 0 80"
-      "$mod CTRL, h, resizeactive, -80 0"
-      "$mod CTRL, j, resizeactive, 0 80"
-      "$mod CTRL, k, resizeactive, 0 -80"
-      "$mod CTRL, l, resizeactive, 80 0"
-
-      "$mod ALT, left, moveactive,  -80 0"
-      "$mod ALT, right, moveactive, 80 0"
-      "$mod ALT, up, moveactive, 0 -80"
-      "$mod ALT, down, moveactive, 0 80"
-      "$mod ALT, h, moveactive,  -80 0"
-      "$mod ALT, j, moveactive, 0 80"
-      "$mod ALT, k, moveactive, 0 -80"
-      "$mod ALT, l, moveactive, 80 0"
-
-      # media and volume controls
+      # media controls
       ", XF86AudioPlay,exec, playerctl play-pause"
       ", XF86AudioNext,exec, playerctl next"
       ", XF86AudioPrev,exec, playerctl previous"
       ", XF86AudioStop,exec, playerctl stop"
+      "ALT, XF86AudioPlay, exec, playerctl next"
+      "ALT SHIFT, XF86AudioPlay, exec, playerctl previous"
+    ];
 
-      "$mod, mouse_down, workspace, e-1"
-      "$mod, mouse_up, workspace, e+1"
-
-      # clipboard manager
-      "$mod, V, exec, toggle-rofi \"cliphist list | rofi -dmenu -theme-str 'window {width: 50%;} listview {columns: 1;}' | cliphist decode | wl-copy\""
+    # resize (Omarchy: minus/equal, ALT = small steps, CTRL = big steps)
+    binde = [
+      "$mod, minus, resizeactive, -100 0"
+      "$mod, equal, resizeactive, 100 0"
+      "$mod SHIFT, minus, resizeactive, 0 -100"
+      "$mod SHIFT, equal, resizeactive, 0 100"
+      "$mod ALT, minus, resizeactive, -25 0"
+      "$mod ALT, equal, resizeactive, 25 0"
+      "$mod CTRL, minus, resizeactive, -300 0"
+      "$mod CTRL, equal, resizeactive, 300 0"
     ];
 
     # mouse binding
