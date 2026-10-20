@@ -36,6 +36,8 @@ LightDM autologin (`core/xserver.nix`), then the Hyprland session (`programs.hyp
 | `monitors.nix` | `monitor = ",preferred,auto,auto"` and sources `~/.config/hypr/{monitors,workspaces}.conf`; installs nwg-displays |
 | `hyprlock.nix` | `programs.hyprlock`: forest_road.jpg (blurred), large time and date labels, username box, Gruvbox input field |
 
+**Config format.** Upstream deprecated hyprlang in 0.55 in favor of Lua and plans to remove it a release or two later. The repo pins `configType = "hyprlang"` explicitly, because Home Manager defaults to `"lua"` for `stateVersion` 26.05. Keep writing hyprlang strings and don't flip `configType` as a side effect of another task. Migrating means rewriting every Hyprland module (plus `swayosd.nix`) into the HM Lua settings API (`{ _args = [ "SUPER + Q" (lib.generators.mkLuaInline "hl.dsp.window.close()") ]; }`), and `show-keybinds.sh` parses `hyprland.conf`. Treat it as its own planned task. If a Hyprland update fails with config errors, the hyprlang removal is the first suspect.
+
 Hyprland options are merged across modules: `swayosd.nix` also appends to `bind`, `bindl`, `bindel`, `binde`, `bindr`, and `exec-once`. Before adding a bind, check what's already taken with `scripts/keybinds.sh`.
 
 ## Keybinds

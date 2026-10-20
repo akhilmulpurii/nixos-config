@@ -110,7 +110,7 @@ Copy this checklist and track progress:
 - **Package lists:** group under `## Heading` comments, with optional aligned `# description` comments.
 - **Dotfiles that are not Nix** (rasi, css, json, toml, yaml) sit next to their module and are linked with `xdg.configFile."<app>/<file>".source = ./<file>;`. Use `.text = '' ... ''` for small inline files.
 - **Host conditionals** are inline expressions, e.g. `font-size = if (host == "p14s") then 20 else 16;`.
-- **Hyprland:** settings go through `wayland.windowManager.hyprland.settings` (hyprlang). The modifier is `$mod` (SUPER). Window rules use the new `match:` syntax: `"match:class ^(mpv)$, float on"`. Don't use the legacy `windowrulev2` form.
+- **Hyprland:** settings go through `wayland.windowManager.hyprland.settings` (hyprlang, pinned with `configType = "hyprlang"`; upstream deprecated it in favor of Lua, so don't switch formats as a side effect; see [references/desktop.md](references/desktop.md)). The modifier is `$mod` (SUPER). Window rules use the new `match:` syntax: `"match:class ^(mpv)$, float on"`. Don't use the legacy `windowrulev2` form.
 - **Commit messages** follow the repo history: `pkgs: add <pkg>`, `pkgs(<group>): ...`, `config(<app>): <change>`, `fix: <what>`, `chore: update` (for flake.lock bumps).
 
 ## Examples

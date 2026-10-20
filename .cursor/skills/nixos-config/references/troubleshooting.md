@@ -82,6 +82,7 @@ These are leftovers from Frost-Phoenix's upstream. Mention them when they're rel
 
 | Item | Location |
 |---|---|
+| Hyprland config is still hyprlang, which was deprecated in 0.55 and will be removed in a later release; it needs a Lua migration eventually (see desktop.md) | `modules/home/hyprland/*`, `swayosd.nix`, `scripts/scripts/show-keybinds.sh` |
 | NVIDIA driver and container toolkit applied to all hosts | `modules/core/hardware.nix` |
 | `/mnt/data` mount applied to all hosts, without `nofail` | `modules/core/filesystem.nix` |
 | `treefmt.toml` passes `-sv` to nixfmt; strict mode conflicts with the repo style | `treefmt.toml` (drop `-s`, keep `-v -w 80`) |
